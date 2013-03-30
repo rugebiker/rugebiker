@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
+    <title>biker :: {% block title %}{% endblock %}</title>
+</head>
+<body>
+<div id="content">
+    {% if user.is_staff %}
+        <a href="{% url admin:index %}">Admin</a>
+    {% endif %}
+    <h1><b>biker</b></h1>
+    <div id="menu">
+        <a href="/">info</a> :: 
+        <a href="/blog">blog</a> :: 
+        <a href="/blog/archive">archive</a> :: 
+        <a href="/blog/feed">feed</a>
+    </div>
+    {% block content %}
+    {% endblock %}
+    <br />
+    <div id="footer"><p>
+        <a href="/blog">blog</a> :: 
+        <a href="/blog/archive">archive</a> :: 
+        <a href="/blog/feed">feed</a></p>
+    </div>
+</div>
+</body>
+</html>
