@@ -8,7 +8,7 @@ class BlogFeed(Feed):
     link = "/feed/"
     
     def items(self):
-        return Post.objects.all().order_by('-created')
+        return Post.objects.all().order_by('-created')[:10]
 
     def item_title(self, item):
         return item.title
@@ -21,6 +21,3 @@ class BlogFeed(Feed):
 
     def author_name(self, item):
         return "biker"
-
-    #def categories(self, item):
-    #    return item.tags

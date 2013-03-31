@@ -8,7 +8,7 @@ from django.template import RequestContext
 def main(request):
     """Main listing."""
     posts = Post.objects.all().order_by("-created")
-    paginator = Paginator(posts, 2)
+    paginator = Paginator(posts, 10)
 
     try: page = int(request.GET.get("page", '1'))
     except ValueError: page = 1
