@@ -30,7 +30,7 @@ class LinuxFeed(Feed):
     link = "/linux/feed/"
 
     def items(self):
-        return Post.objects.get(tags__contains='linux').order_by('-created')[:10]
+        return Post.objects.filter(tags__name__icontains='linux').order_by('-created')[:10]
 
     def item_title(self, item):
         return item.title
