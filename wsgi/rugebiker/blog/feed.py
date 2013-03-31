@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 from django.contrib.syndication.views import Feed
 from blog.models import Post 
 
@@ -24,7 +25,7 @@ class BlogFeed(Feed):
 
 class LinuxFeed(Feed):
 
-    title - "Biker"
+    title = "Biker"
     description = "De linux, el universo y todo lo demás!"
     link = "/linux/feed/"
 
