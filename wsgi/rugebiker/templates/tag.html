@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}tag :: {{ tag }}{% endblock %}
+{% block title2 %}tag :: {{ tag }}{% endblock %}
 
 {% block content %}
     {% for post in posts %}
         <div class="title"><h2><a href="/blog/{{post.post_url}}">{{ post.title }}</a></h2></div>
-        <div class="time"><h5>{{ post.created }}</h5></div>
+        <div class="time"><h5>{{ post.created|date:"Y-m-d" }}</h5></div>
         <div class="entry"><p>{{ post.body|linebreaks }}</p></div>
         <div class="tags">Categories: 
             {% for tag in post.tags.all %}
