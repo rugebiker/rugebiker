@@ -9,9 +9,6 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -30,6 +27,7 @@ if ON_OPENSHIFT:
             'PORT': os.environ['OPENSHIFT_MYSQL_DB_PORT']
         }   
     }
+    DEBUG = False
 else:
     DATABASES = {
         'default': {
@@ -41,6 +39,9 @@ else:
             'PORT': server.SERVER_PORT,                      # Set to empty string for default. Not used with sqlite3.
         }
     }
+    DEBUG = True
+
+TEMPLATE_DEBUG = DEBUG
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
