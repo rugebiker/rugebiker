@@ -43,6 +43,13 @@ else:
 
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = [
+    '.rugebiker-rugebiker.rhcloud.com',
+    '.rugebiker-rugebiker.rhcloud.com.',
+    '.rugebiker.com',
+    '.rugebiker.com.',
+]
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
