@@ -28,27 +28,29 @@ if ON_OPENSHIFT:
         }   
     }
     DEBUG = False
+    MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
+    STATIC_ROOT = os.path.join(PROJECT_DIR, '..', 'static')
+    STATICFILES_DIRS = ()
+
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': os.path.join(PROJECT_DIR, 'sqlite3.db'),  # Or path to database file if using sqlite3.
-            'USER': '',                      # Not used with sqlite3.
-            'PASSWORD': '',                  # Not used with sqlite3.
+            'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': server.SERVER_NAME,  # Or path to database file if using sqlite3.
+            'USER': server.SERVER_USER,                      # Not used with sqlite3.
+            'PASSWORD': server.SERVER_PASSWORD,                  # Not used with sqlite3.
             'HOST': server.SERVER_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
             'PORT': server.SERVER_PORT,                      # Set to empty string for default. Not used with sqlite3.
         }
     }
     DEBUG = True
+    MEDIA_ROOT = ''
+    STATIC_ROOT = ''
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_DIR, '..', 'static'),
+    )
 
 TEMPLATE_DEBUG = DEBUG
-
-ALLOWED_HOSTS = [
-    '.rugebiker-rugebiker.rhcloud.com',
-    '.rugebiker-rugebiker.rhcloud.com.',
-    '.rugebiker.com',
-    '.rugebiker.com.',
-]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -75,7 +77,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
+#MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -86,7 +88,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = os.path.join(PROJECT_DIR, '..', 'static')
+#STATIC_ROOT = os.path.join(PROJECT_DIR, '..', 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -98,11 +100,12 @@ STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+#STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
+#    os.path.join(PROJECT_DIR, '..', 'static'),
+#)
 
 # List of finder classes that know how to find static files in
 # various locations.
