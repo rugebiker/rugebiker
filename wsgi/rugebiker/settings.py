@@ -43,7 +43,7 @@ else:
             'PORT': server.SERVER_PORT,                      # Set to empty string for default. Not used with sqlite3.
         }
     }
-    DEBUG = True
+    DEBUG = True 
     MEDIA_ROOT = ''
     STATIC_ROOT = ''
     STATICFILES_DIRS = (
@@ -51,6 +51,17 @@ else:
     )
 
 TEMPLATE_DEBUG = DEBUG
+
+ALLOWED_HOSTS = [
+    '.rugebiker-rugebiker.rhcloud.com',
+    '.rugebiker-rugebiker.rhcloud.com.',
+    '.rugebiker.com',
+    '.rugebiker.com.',
+    '.127.0.0.1',
+    '.127.0.0.1.',
+    '.localhost',
+    '.localhost.',
+]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
