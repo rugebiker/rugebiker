@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="{% static "style.css" %}">
     <title>biker :: {% block title %}{% endblock %}</title>
@@ -20,23 +20,6 @@
     </script>
 </head>
 <body>
-<div id="content">
-    <h1><b>biker :: {% block title2 %}{% endblock %}</b></h1>
-    <div id="menu">
-        <a href="/">info</a> :: 
-        <a href="/blog/es/">blog</a> :: 
-        <a href="/blog/archivo/">archivo</a> :: 
-        <a href="/blog/feed/es/">feed</a>
-    </div>
-    {% block content %}
-    {% endblock %}
-    <br />
-    <div id="footer"><p>
-        <a href="/">info</a> :: 
-        <a href="/blog/es/">blog</a> :: 
-        <a href="/blog/archivo/">archivo</a> :: 
-        <a href="/blog/feed/es">feed</a></p>
-    </div>
-</div>
+{% block body %}{% endblock %}
 </body>
 </html>

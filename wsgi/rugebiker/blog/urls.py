@@ -12,6 +12,7 @@ urlpatterns += patterns('blog.views',
     url(r'^$', "main"),
     url(r'^es/$', "blog_es"),
     url(r'^archive/$', "archive"),
+    url(r'^archive/es/$', "archivo"),
     url(r'^(?P<post_url>[\w\_&-]+)/$', "post_page"),
     url(r'^tag/(?P<tag>[\w\_&-]+)/$', "tag"),
 )

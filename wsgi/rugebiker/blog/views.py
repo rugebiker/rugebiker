@@ -20,7 +20,7 @@ def main(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts, user=request.user))
+    return render_to_response("list.html", dict(posts=posts, lang='en', user=request.user))
 
 def blog_es(request):
     posts = Post.objects.filter(lang='es').order_by("-created")
@@ -36,18 +36,22 @@ def blog_es(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("lista.html", dict(posts=posts, user=request.user))
+    return render_to_response("list.html", dict(posts=posts, lang='es', user=request.user))
 
 def post_page(request, post_url):
     post = Post.objects.get(post_url=post_url)
-    d = dict(post=post, user=request.user)
+    d = dict(post=post, lang=post.lang, user=request.user)
     d.update(csrf(request))
     return render_to_response("post.html", d)
 
 def archive(request):
     posts = Post.objects.filter(lang='en').order_by("-created")
-    return render_to_response("archive.html", dict(posts=posts, user=request.user))
+    return render_to_response("archive.html", dict(posts=posts, lang='en', user=request.user))
+
+def archivo(request):
+    posts = Post.objects.filter(lang='es').order_by("-created")
+    return render_to_response("archive.html", dict(posts=posts, lang='es', user=request.user))
 
 def tag(request, tag):
     posts = Post.objects.filter(tags__name=tag).order_by("-created")
-    return render_to_response("tag.html", dict(posts=posts, tag=tag, user=request.user))
+    return render_to_response("tag.html", dict(posts=posts, tag=tag, lang='en', user=request.user))
