@@ -9,6 +9,18 @@ This theme is uncopyrighted, free, and offered as is.
 .
 */
 
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/k3k702ZOKiLJc3WVjuplzHhCUOGz7vYGh680lGh-uXM.woff) format('woff');
+}
 
 body {
 	background: #fff; 
@@ -17,10 +29,10 @@ body {
         line-height: 30px;
 	}
 	
-h1 {font-family: Helvetica, sans-serif; font-size: 1em; color:#333; font-weight:normal;  padding: 20px 0px 0px 0px;}
-h2 {font-family: Helvetica, sans-serif; font-size: 1.5em; color:#333; line-height:26px; font-weight:normal; padding: 5px 0px 10px 0px;}
-h3 {font-family: Helvetica, sans-serif; font-size: 18px; color:#666; line-height: 15px; text-indent: 0px; padding: 10px 0px 0px 0px;}
-h4 {font-family: Helvetica, Georgia, "Times New Roman", Times, serif; font-size: 1em; color:#000000;}
+h1 {font-family: Helvetica, Open Sans, sans-serif; font-size: 1em; color:#333; font-weight:normal;  padding: 20px 0px 0px 0px;}
+h2 {font-family: Helvetica, Open Sans, sans-serif; font-size: 1.5em; color:#333; line-height:26px; font-weight:normal; padding: 5px 0px 10px 0px;}
+h3 {font-family: Helvetica, Open Sans, sans-serif; font-size: 18px; color:#666; line-height: 15px; text-indent: 0px; padding: 10px 0px 0px 0px;}
+h4 {font-family: Helvetica, Open Sans, Georgia, "Times New Roman", Times, serif; font-size: 1em; color:#000000;}
 h5 {font-size: 9pt; color:#000000;}
 
 img{border:none;}
