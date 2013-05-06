@@ -7,11 +7,13 @@ from django.template import RequestContext
 
 def main(request):
     """Main listing."""
-    posts = Post.objects.all().order_by("-created")
+    posts = Post.objects.filter(lang='en').order_by("-created")
     paginator = Paginator(posts, 10)
 
-    try: page = int(request.GET.get("page", '1'))
-    except ValueError: page = 1
+    try:
+        page = int(request.GET.get("page", '1'))
+    except ValueError:
+        page = 1
 
     try:
         posts = paginator.page(page)
@@ -20,6 +22,22 @@ def main(request):
 
     return render_to_response("list.html", dict(posts=posts, user=request.user))
 
+def blog_es(request):
+    posts = Post.objects.filter(lang='es').order_by("-created")
+    paginator = Paginator(posts, 10)
+
+    try:
+        page = int(request.GET.get("page", '1'))
+    except ValueError:
+        page = 1
+
+    try:
+        posts = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        posts = paginator.page(paginator.num_pages)
+
+    return render_to_response("lista.html", dict(posts=posts, user=request.user))
+
 def post_page(request, post_url):
     post = Post.objects.get(post_url=post_url)
     d = dict(post=post, user=request.user)
@@ -27,7 +45,7 @@ def post_page(request, post_url):
     return render_to_response("post.html", d)
 
 def archive(request):
-    posts = Post.objects.all().order_by("-created")
+    posts = Post.objects.filter(lang='en').order_by("-created")
     return render_to_response("archive.html", dict(posts=posts, user=request.user))
 
 def tag(request, tag):
