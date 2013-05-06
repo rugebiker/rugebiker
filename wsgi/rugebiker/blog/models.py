@@ -10,6 +10,7 @@ class Post(models.Model):
     created = models.DateTimeField()
     tags = TaggableManager()
     post_url = models.CharField(max_length=30)
+    lang = models.CharField(max_length=2)
 
     def __unicode__(self):
         return self.title
