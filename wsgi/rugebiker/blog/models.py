@@ -9,7 +9,7 @@ class Post(models.Model):
     body = models.TextField()
     created = models.DateTimeField()
     tags = TaggableManager()
-    post_url = models.CharField(max_length=30)
+    post_url = models.CharField(max_length=30, unique=True)
     lang = models.CharField(max_length=2)
 
     def __unicode__(self):
