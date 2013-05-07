@@ -5,9 +5,9 @@ from blog.models import Post
 from django.core.context_processors import csrf
 from django.template import RequestContext
 
-def main(request):
+def main(request, lang):
     """Main listing."""
-    posts = Post.objects.filter(lang='en').order_by("-created")
+    posts = Post.objects.filter(lang=lang).order_by("-created")
     paginator = Paginator(posts, 10)
 
     try:
@@ -20,23 +20,7 @@ def main(request):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("list.html", dict(posts=posts, lang='en', user=request.user))
-
-def blog_es(request):
-    posts = Post.objects.filter(lang='es').order_by("-created")
-    paginator = Paginator(posts, 10)
-
-    try:
-        page = int(request.GET.get("page", '1'))
-    except ValueError:
-        page = 1
-
-    try:
-        posts = paginator.page(page)
-    except (InvalidPage, EmptyPage):
-        posts = paginator.page(paginator.num_pages)
-
-    return render_to_response("list.html", dict(posts=posts, lang='es', user=request.user))
+    return render_to_response("list.html", dict(posts=posts, lang=lang, user=request.user))
 
 def post_page(request, post_url):
     post = Post.objects.get(post_url=post_url)
@@ -44,13 +28,9 @@ def post_page(request, post_url):
     d.update(csrf(request))
     return render_to_response("post.html", d)
 
-def archive(request):
-    posts = Post.objects.filter(lang='en').order_by("-created")
-    return render_to_response("archive.html", dict(posts=posts, lang='en', user=request.user))
-
-def archivo(request):
-    posts = Post.objects.filter(lang='es').order_by("-created")
-    return render_to_response("archive.html", dict(posts=posts, lang='es', user=request.user))
+def log(request, lang):
+    posts = Post.objects.filter(lang=lang).order_by("-created")
+    return render_to_response("log.html", dict(posts=posts, lang=lang, user=request.user))
 
 def tag(request, tag):
     posts = Post.objects.filter(tags__name=tag).order_by("-created")
