@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, include, url
-from blog.feed import BlogFeed, LinuxFeed
+from blog.feed import BlogFeed, TagFeed
 
 urlpatterns = patterns('',
     url(r'^feed/$', BlogFeed()),
-    url(r'^linux/feed/$', LinuxFeed()),
+    url(r'^(?P<tag>[\w\_&-]+)/feed/$', TagFeed()),
 )
 
 urlpatterns += patterns('blog.views',
