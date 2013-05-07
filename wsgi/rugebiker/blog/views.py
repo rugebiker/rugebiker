@@ -34,4 +34,16 @@ def log(request, lang):
 
 def tag(request, tag):
     posts = Post.objects.filter(tags__name=tag).order_by("-created")
+    paginator = Paginator(posts, 10)
+
+    try:
+        page = int(request.GET.get("page", '1'))
+    except ValueError:
+        page = 1 
+
+    try:
+        posts = paginator.page(page)
+    except (InvalidPage, EmptyPage):
+        posts = paginator.page(paginator.num_pages)
+    
     return render_to_response("tag.html", dict(posts=posts, tag=tag, lang='en', user=request.user))
