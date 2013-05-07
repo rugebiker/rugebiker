@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'rugebiker.views.home', name='home'),
     # url(r'^rugebiker/', include('rugebiker.foo.urls')),
     url(r'^$', TemplateView.as_view(template_name="info.html")),
+    url(r'^es/$', TemplateView.as_view(template_name="info.html"),{'lang':'es'}),
     url(r'^blog/', include('blog.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

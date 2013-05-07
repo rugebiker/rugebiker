@@ -6,7 +6,14 @@
 {%block body %}
 <div id="content">
 <h2>biker</h2>
-<div class='entry'><p>Hi, I'm a simple guy who loves working with both hardware and software. I have strong experience doing automation and I'm passionate about embedded systems. Also I often contribute to FLOSS and I use GNU/Linux as my everyday system. I enjoy learning new things and I usually do projects on my free time. I love traveling all around the world.</p>
-<p>I have my own <a href="/blog/">blog</a> and you can read my CV <a href="/static/Ruben_Guerra_Marin_CV.pdf">here</a>.</p></div>
+<div class='entry'>
+{% ifequal lang 'es' %}
+<p>Que tal, bienvenidos a mi página! Soy una persona simple a la que le gusta trabajar/jugar tanto con software como con hardware. Tengo mucha experiencia haciendo automatización de pruebas y procesos, y me encanta todo lo relacionado a sistemas embebidos. También soy contribuidor al Software Libre y uso GNU/Linux como mi sistema de uso diario. Me encanta aprender cosas nuevas y trabajar en proyectos como hobby. Lo que más me gusta es viajar por el mundo.</p>
+<p>Mantengo mi propio <a href="/blog/es/">blog</a> y pueden leer mi CV <a href="/static/Ruben_Guerra_Marin_CV.pdf">aquí</a>.</p>
+{% else %}
+<p>Hi, Welcome to my page! I'm a simple guy who loves working with both hardware and software. I have strong experience doing automation and I'm passionate about embedded systems. Also I often contribute to FLOSS and I use GNU/Linux as my everyday system. I enjoy learning new things and I usually do projects on my free time. I love traveling all around the world.</p>
+<p>I have my own <a href="/blog/">blog</a> and you can read my CV <a href="/static/Ruben_Guerra_Marin_CV.pdf">here</a>.</p>
+{% endifequal %}
+</div>
 </div>
 {% endblock %}
