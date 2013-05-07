@@ -32,18 +32,22 @@ class TagFeed(Feed):
 
     def get_object(self, request, tag):
         try:
-            item = Post.objects.filter(tags__name__exact=tag)
-            if item:
-                item.tag = tag
-                return item
-            else:
-                raise Http404
+            if tag == 'en' or tag == 'es':
+                item = Post.objects.filter(lang=tag)
+            else:    
+                item = Post.objects.filter(tags__name__exact=tag)
+                if not item:
+                    raise Http404
+            item.tag = tag
+            return item
         except:
             raise Http404
-        #return get_object_or_404(Post, tags__name=tag)
 
     def items(self, item):
-        return Post.objects.filter(tags__name__exact=item.tag).order_by('-created')[:10]
+        if item.tag == 'en' or item.tag == 'es':
+            return Post.objects.filter(lang=item.tag).order_by("-created")[:10]
+        else:
+            return Post.objects.filter(tags__name__exact=item.tag).order_by('-created')[:10]
 
     def item_title(self, item):
         return item.title
