@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}log{% endblock %}
-{% block title2 %}log{% endblock %}
+{% block title2 %}{% block title %}log{% endblock %}{% endblock %}
 
 {% block content %}
     <br />

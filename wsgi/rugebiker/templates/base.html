@@ -1,40 +1,16 @@
 {% extends "top.html" %}
 {% load staticfiles %}
-{%block body %}
+{% block body %}
 <div id="content">
     <h1><b>biker :: {% block title2 %}{% endblock %}</b></h1>
     <div id="menu">
-    {% ifequal lang 'es' %}
-        <a href="/es/">info</a> ::  
-        <a href="/blog/es/">blog</a> ::  
-        <a href="/blog/log/es/">log</a> ::  
-        <a href="/blog/es/feed/">feed</a> :: 
-        <a href="/">english</a>
-    {% else %}
-        <a href="/">info</a> :: 
-        <a href="/blog/">blog</a> :: 
-        <a href="/blog/log/">log</a> :: 
-        <a href="/blog/en/feed/">feed</a> :: 
-        <a href="/es/">español</a>
-    {% endifequal %}
+    {% include "navigation.html" %}
     </div>
     {% block content %}
     {% endblock %}
     <br />
     <div id="footer"><p>
-    {% ifequal lang 'es' %}
-        <a href="/es/">info</a> ::
-        <a href="/blog/es/">blog</a> ::
-        <a href="/blog/log/es/">log</a> ::
-        <a href="/blog/es/feed/">feed</a> :: 
-        <a href="/">english</a>
-    {% else %}
-        <a href="/">info</a> :: 
-        <a href="/blog/">blog</a> :: 
-        <a href="/blog/log/">log</a> :: 
-        <a href="/blog/en/feed/">feed</a> :: 
-        <a href="/es/">español</a>
-    {% endifequal %}
+    {% include "navigation.html" %}
     </p></div>
 </div>
 {% endblock %}

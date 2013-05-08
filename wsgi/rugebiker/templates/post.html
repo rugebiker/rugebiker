@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ post.title }}{% endblock %}
-{% block title2 %}{{ post.title }}{% endblock %}
+{% block title2 %}{% block title %}{{ post.title }}{% endblock %}{% endblock %}
 
 {% block content %}
     <div class="time"><h5>{{ post.created|date:"Y-m-d" }}</h5></div>

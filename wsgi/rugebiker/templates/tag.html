@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}tag :: {{ tag }}{% endblock %}
-{% block title2 %}tag :: {{ tag }}{% endblock %}
+{% block title2 %}{% block title %}tag :: {{ tag }}{% endblock %}{% endblock %}
 
 {% block content %}
     {% for post in posts %}

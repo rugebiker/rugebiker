@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}404{% endblock %}
-{% block title2 %}404{% endblock %}
+{% block title2 %}{% block title %}404{% endblock %}{% endblock %}
 
 {% block content %}
 <p>Page not found.
