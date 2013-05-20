@@ -1,14 +1,15 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 from django.contrib.syndication.views import Feed
-from blog.models import Post 
+from blog.models import Post
 from django.http import Http404
 
+
 class BlogFeed(Feed):
-    
+
     title = "Biker"
     description = "De linux, el universo y todo lo demás!"
     link = "/feed/"
-    
+
     def items(self):
         return Post.objects.all().order_by('-created')[:10]
 
@@ -16,13 +17,14 @@ class BlogFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.body 
+        return item.body
 
     def item_link(self, item):
         return u"/blog/%s" % item.post_url
 
     def author_name(self, item):
         return "biker"
+
 
 class TagFeed(Feed):
 
@@ -34,7 +36,7 @@ class TagFeed(Feed):
         try:
             if tag == 'en' or tag == 'es':
                 item = Post.objects.filter(lang=tag)
-            else:    
+            else:
                 item = Post.objects.filter(tags__name__exact=tag)
                 if not item:
                     raise Http404
@@ -53,7 +55,7 @@ class TagFeed(Feed):
         return item.title
 
     def item_description(self, item):
-        return item.body 
+        return item.body
 
     def item_link(self, item):
         return u"/blog/%s" % item.post_url

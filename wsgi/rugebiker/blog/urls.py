@@ -7,12 +7,10 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('blog.views',
-    # Examples:
-    # url(r'^$', 'rugebiker.views.home', name='home'),
-    url(r'^$', "main", {'lang':'en'}),
-    url(r'^es/$', "main", {'lang':'es'}),
-    url(r'^log/$', "log", {'lang':'en'}),
-    url(r'^log/es/$', "log", {'lang':'es'}),
+    url(r'^$', "main", {'lang': 'en'}),
+    url(r'^es/$', "main", {'lang': 'es'}),
+    url(r'^log/$', "log", {'lang': 'en'}),
+    url(r'^log/es/$', "log", {'lang': 'es'}),
     url(r'^(?P<post_url>[\w\_&-]+)/$', "post_page"),
     url(r'^tag/(?P<tag>[\w\_&-]+)/$', "tag"),
 )

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Django settings for openshift project.
-import imp, os
+import imp
+import os
 
 # a setting to determine whether we are running on OpenShift
 ON_OPENSHIFT = False
@@ -17,7 +18,7 @@ MANAGERS = ADMINS
 if ON_OPENSHIFT:
     # os.environ['OPENSHIFT_MYSQL_DB_*'] variables can be used with databases created
     # with rhc cartridge add (see /README in this git repo)
-    DATABASES = { 
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': os.environ['OPENSHIFT_APP_NAME'],
@@ -25,7 +26,7 @@ if ON_OPENSHIFT:
             'PASSWORD': os.environ['OPENSHIFT_MYSQL_DB_PASSWORD'],
             'HOST': os.environ['OPENSHIFT_MYSQL_DB_HOST'],
             'PORT': os.environ['OPENSHIFT_MYSQL_DB_PORT']
-        }   
+        }
     }
     DEBUG = False
     MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
@@ -35,15 +36,15 @@ if ON_OPENSHIFT:
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.mysql',  # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': server.SERVER_NAME,  # Or path to database file if using sqlite3.
-            'USER': server.SERVER_USER,                      # Not used with sqlite3.
-            'PASSWORD': server.SERVER_PASSWORD,                  # Not used with sqlite3.
-            'HOST': server.SERVER_HOST,                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': server.SERVER_PORT,                      # Set to empty string for default. Not used with sqlite3.
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': server.SERVER_NAME,
+            'USER': server.SERVER_USER,
+            'PASSWORD': server.SERVER_PASSWORD,
+            'HOST': server.SERVER_HOST,
+            'PORT': server.SERVER_PORT,
         }
     }
-    DEBUG = True 
+    DEBUG = True
     MEDIA_ROOT = ''
     STATIC_ROOT = ''
     STATICFILES_DIRS = (
@@ -76,7 +77,7 @@ TIME_ZONE = 'America/Los_Angeles'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = 2 
+SITE_ID = 2
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -127,7 +128,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make a dictionary of default keys
-default_keys = { 'SECRET_KEY': 'vm4rl5*ymb@2&d_(gc$gb-^twq9w(u69hi--%$5xrh!xk(t%hw' }
+default_keys = {'SECRET_KEY': 'vm4rl5*ymb@2&d_(gc$gb-^twq9w(u69hi--%$5xrh!xk(t%hw'}
 
 # Replace default keys with dynamic values if we are in OpenShift
 use_keys = default_keys
