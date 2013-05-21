@@ -6,5 +6,5 @@ setup(name='rugebiker',
       author='Ruben Guerra Marin',
       author_email='rguerra.marin@gmail.com',
       url='http://www.rugebiker.com',
-      install_requires=['Django>=1.3','django-taggit'],
+      install_requires=['Django>=1.3','django-taggit', 'south'],
      )
