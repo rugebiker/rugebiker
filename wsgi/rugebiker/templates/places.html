@@ -1,0 +1,18 @@
+{% extends "top.html" %}
+{% load staticfiles %}
+
+{% block title %}Places{% endblock %}
+{%block body %}
+<div id="content">
+<h2>biker :: 
+{% ifequal lang 'es' %}
+Lugares que he visitado
+{% else %}
+Places I have visited
+{% endifequal %}
+</h2>
+</div>
+<div class="centered-text"><div class="table-wrapper">
+<script src="//www.gmodules.com/ig/ifr?url=http://dl.google.com/developers/maps/embedkmlgadget.xml&amp;up_kml_url=http%3A%2F%2Fwww.rugebiker.com%2Fstatic%2Flugares.kmz&amp;up_view_mode=maps&amp;up_earth_2d_fallback=0&amp;up_earth_fly_from_space=1&amp;up_earth_show_nav_controls=1&amp;up_earth_show_buildings=1&amp;up_earth_show_terrain=1&amp;up_earth_show_roads=1&amp;up_earth_show_borders=1&amp;up_earth_sphere=earth&amp;up_maps_zoom_out=0&amp;up_maps_default_type=satellite&amp;synd=open&amp;w=1000&amp;h=650&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+</div></div>
+{% endblock %}
