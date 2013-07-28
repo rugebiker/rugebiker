@@ -7,7 +7,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     body = models.TextField()
     created = models.DateTimeField()
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
     post_url = models.CharField(max_length=30, unique=True)
     lang = models.CharField(max_length=2)
 

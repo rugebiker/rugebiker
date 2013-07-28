@@ -4,9 +4,11 @@
 
 {% block content %}
     {% for post in posts %}
-        <div class="title"><h2><a href="/blog/{{post.post_url}}/">{{ post.title }}</a></h2></div>
-        <div class="time"><h5>{{ post.created|date:"Y-m-d" }}</h5></div>
-        <div class="entry"><p>{{ post.body|safe }}</p></div>
+        {% if post.tags.all %}
+            <div class="title"><h2><a href="/blog/{{post.post_url}}/">{{ post.title }}</a></h2></div>
+            <div class="time"><h5>{{ post.created|date:"Y-m-d" }}</h5></div>
+            <div class="entry"><p>{{ post.body|safe }}</p></div>
+        {% endif %}
     {% endfor %}
 
     <!-- Next/Prev page links  -->
