@@ -2,7 +2,7 @@
 from django.contrib.syndication.views import Feed
 from blog.models import Post
 from django.http import Http404
-
+import datetime
 
 class BlogFeed(Feed):
 
@@ -21,6 +21,9 @@ class BlogFeed(Feed):
 
     def item_link(self, item):
         return u"/blog/%s" % item.post_url
+
+    def item_pubdate(self, item):
+        return datetime.datetime.combine(item.created, datetime.time())
 
     def author_name(self, item):
         return "biker"
@@ -59,6 +62,9 @@ class TagFeed(Feed):
 
     def item_link(self, item):
         return u"/blog/%s" % item.post_url
+
+    def item_pubdate(self, item):
+        return datetime.datetime.combine(item.created, datetime.time())
 
     def author_name(self, item):
         return "biker"
