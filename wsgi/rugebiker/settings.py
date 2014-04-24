@@ -11,7 +11,7 @@ if os.environ.has_key('OPENSHIFT_REPO_DIR'):
 PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    #('Ruben Guerra Marin', 'rguerra.marin@gmail.com'),
 )
 MANAGERS = ADMINS
 
@@ -166,6 +166,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django_browserid',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -179,6 +180,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_browserid.auth.BrowserIDBackend',
+)
+
+BROWSERID_AUDIENCES = ['http://www.rugebiker.com/', 'http://rugebiker.com/', 'http://rugebiker-rugebiker.rhcloud.com/', 'https://rugebiker-rugebiker.rhcloud.com/', 'http://localhost:8000', 'http://127.0.0.1:8000']
+BROWSERID_CREATE_USER = False
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -201,4 +210,5 @@ LOGGING = {
             'propagate': True,
         },
     }
+        
 }
