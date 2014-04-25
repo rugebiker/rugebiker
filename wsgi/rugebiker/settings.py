@@ -191,11 +191,16 @@ AUTHENTICATION_BACKENDS = (
 BROWSERID_AUDIENCES = ['http://www.rugebiker.com/', 'http://rugebiker.com/', 'http://rugebiker-rugebiker.rhcloud.com/', 'https://rugebiker-rugebiker.rhcloud.com/', 'http://localhost:8000', 'http://127.0.0.1:8000']
 BROWSERID_CREATE_USER = False
 
+SOUTH_MIGRATION_MODULES = {
+    'taggit': 'taggit.south_migrations',
+}
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
