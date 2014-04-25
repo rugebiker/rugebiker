@@ -34,6 +34,7 @@ if ON_OPENSHIFT:
     STATICFILES_DIRS = ()
 
 else:
+    import server
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
@@ -44,6 +45,7 @@ else:
             'PORT': server.SERVER_PORT,
         }
     }
+
     DEBUG = True
     MEDIA_ROOT = ''
     STATIC_ROOT = ''
