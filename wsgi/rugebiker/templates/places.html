@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block title %}Places{% endblock %}
+{% block scripts %}<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />{% endblock %}
 {%block body %}
 <div id="content">
 <h2>biker :: 
@@ -12,7 +13,171 @@ Places I have visited
 {% endifequal %}
 </h2>
 </div>
+
 <div class="centered-text"><div class="table-wrapper">
-<script src="//www.gmodules.com/ig/ifr?url=http://dl.google.com/developers/maps/embedkmlgadget.xml&amp;up_kml_url=http%3A%2F%2Fwww.rugebiker.com%2Fstatic%2Flugares.kmz&amp;up_view_mode=maps&amp;up_earth_2d_fallback=0&amp;up_earth_fly_from_space=1&amp;up_earth_show_nav_controls=1&amp;up_earth_show_buildings=1&amp;up_earth_show_terrain=1&amp;up_earth_show_roads=1&amp;up_earth_show_borders=1&amp;up_earth_sphere=earth&amp;up_maps_zoom_out=0&amp;up_maps_default_type=satellite&amp;synd=open&amp;w=1000&amp;h=650&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<div id="map" style="width: 1000px; height: 700px"></div>
+<script>
+var map = L.map('map').setView([51.505, -0.09], 2);
+
+var OpenStreetMap_Mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
+}).addTo(map);
+
+<!--Austria-->
+L.marker([46.6103, 13.8558]).addTo(map).bindPopup("Villach");
+L.marker([46.8289, 12.7690]).addTo(map).bindPopup("Lienz");
+L.marker([47.5574, 13.6865]).addTo(map).bindPopup("Obertraun");
+L.marker([47.0667, 15.4500]).addTo(map).bindPopup("Graz");
+L.marker([48.2000, 15.6333]).addTo(map).bindPopup("Sankt Pölten");
+L.marker([48.4092, 15.6141]).addTo(map).bindPopup("Krems");
+L.marker([48.2085, 16.3721]).addTo(map).bindPopup("Vienna");
+L.marker([47.8017, 13.9982]).addTo(map).bindPopup("Kasberg");
+L.marker([48.0427, 14.4213]).addTo(map).bindPopup("Steyr");
+L.marker([48.3064, 14.2861]).addTo(map).bindPopup("Linz");
+L.marker([47.7994, 13.0440]).addTo(map).bindPopup("Salzburg");
+L.marker([47.3256, 12.7944]).addTo(map).bindPopup("Zell am See");
+L.marker([47.5623, 13.6491]).addTo(map).bindPopup("Hallstatt");
+L.marker([47.2849, 12.8231]).addTo(map).bindPopup("Bruck an der Großglocknerstraße");
+
+<!--Belgium-->
+L.marker([50.8505, 4.3488]).addTo(map).bindPopup("Brussels");
+L.marker([50.6071, 3.3893]).addTo(map).bindPopup("Tournai");
+L.marker([50.8511, 2.8857]).addTo(map).bindPopup("Ypres");
+L.marker([51.2530, 5.4798]).addTo(map).bindPopup("Achel");
+L.marker([51.0500, 3.7168]).addTo(map).bindPopup("Ghent");
+L.marker([51.2088, 3.2241]).addTo(map).bindPopup("Bruges");
+
+<!--Croatia-->
+L.marker([45.8144, 15.9780]).addTo(map).bindPopup("Zagreb");
+L.marker([43.5089, 16.4392]).addTo(map).bindPopup("Split");
+
+<!--Czech Republic-->
+L.marker([50.0880, 14.4208]).addTo(map).bindPopup("Prague");
+L.marker([48.8109, 14.3152]).addTo(map).bindPopup("Český Krumlov");
+L.marker([48.9745, 14.4743]).addTo(map).bindPopup("Ceske Budejovice");
+L.marker([50.5335, 14.1318]).addTo(map).bindPopup("Litoměřice");
+
+<!--England-->
+L.marker([51.5085, -0.1257]).addTo(map).bindPopup("London");
+
+<!--France-->
+L.marker([43.7031, 7.2661]).addTo(map).bindPopup("Nice");
+L.marker([42.4431, 3.1652]).addTo(map).bindPopup("Cerbere");
+L.marker([48.8534, 2.3488]).addTo(map).bindPopup("Paris");
+L.marker([50.6330, 3.0586]).addTo(map).bindPopup("Lille");
+L.marker([50.6943, 3.1747]).addTo(map).bindPopup("Roubaix");
+
+<!--Germany-->
+L.marker([52.5244, 13.4105]).addTo(map).bindPopup("Berlin");
+L.marker([52.2895, 8.9145]).addTo(map).bindPopup("Minden");
+L.marker([53.5753, 10.0153]).addTo(map).bindPopup("Hamburg");
+L.marker([52.3705, 9.7332]).addTo(map).bindPopup("Hanover");
+L.marker([51.9545, 8.6622]).addTo(map).bindPopup("Oerlinghausen");
+L.marker([52.0333, 8.5333]).addTo(map).bindPopup("Bielefeld");
+L.marker([48.1374, 11.5755]).addTo(map).bindPopup("Munich");
+L.marker([51.0509, 13.7383]).addTo(map).bindPopup("Dresden");
+L.marker([51.2217, 6.7762]).addTo(map).bindPopup("Dusseldorf");
+L.marker([50.9333, 6.9500]).addTo(map).bindPopup("Cologne");
+
+<!--Hungary-->
+L.marker([47.4980, 19.0399]).addTo(map).bindPopup("Budapest");
+
+<!--Italy-->
+L.marker([45.4371, 12.3327]).addTo(map).bindPopup("Venice");
+L.marker([45.4299, 10.9844]).addTo(map).bindPopup("Verona");
+L.marker([43.7792, 11.2463]).addTo(map).bindPopup("Florence");
+L.marker([41.8919, 12.5113]).addTo(map).bindPopup("Rome");
+L.marker([43.7085, 10.4036]).addTo(map).bindPopup("Pisa");
+
+<!--Mexico-->
+L.marker([20.5881, -100.3879]).addTo(map).bindPopup("Querétaro");
+L.marker([22.1499, -100.9828]).addTo(map).bindPopup("San Luis Potosí");
+L.marker([21.1743, -86.8466]).addTo(map).bindPopup("Cancún");
+L.marker([21.2352, -89.6205]).addTo(map).bindPopup("Progreso");
+L.marker([20.9752, -89.6169]).addTo(map).bindPopup("Mérica");
+L.marker([19.4285, -99.1277]).addTo(map).bindPopup("Mexico City");
+L.marker([20.8820, -103.8357]).addTo(map).bindPopup("Tequila");
+L.marker([20.6244, -103.2342]).addTo(map).bindPopup("Tonalá");
+L.marker([20.6408, -103.2931]).addTo(map).bindPopup("Tlaquepaque");
+L.marker([20.7237, -103.3848]).addTo(map).bindPopup("Zapopan");
+L.marker([20.2960, -103.1911]).addTo(map).bindPopup("Chapala");
+L.marker([21.2491, -102.3318]).addTo(map).bindPopup("San Juan de los Lagos");
+L.marker([19.7008, -101.1844]).addTo(map).bindPopup("Morelia");
+L.marker([19.9891, -102.2848]).addTo(map).bindPopup("Zamora");
+L.marker([21.5418, -105.2843]).addTo(map).bindPopup("San Blas");
+L.marker([19.0521, -104.3159]).addTo(map).bindPopup("Manzanillo");
+L.marker([19.2434, -103.7277]).addTo(map).bindPopup("Colima");
+L.marker([20.6668, -103.3918]).addTo(map).bindPopup("Guadalajara");
+L.marker([21.0186, -101.2591]).addTo(map).bindPopup("Guanajuato");
+L.marker([23.2329, -106.4062]).addTo(map).bindPopup("Mazatlán");
+L.marker([25.7953, -108.9924]).addTo(map).bindPopup("Los Mochis");
+L.marker([29.1026, -110.9773]).addTo(map).bindPopup("Hermosillo");
+L.marker([27.7830, -107.4952]).addTo(map).bindPopup("Sisoguichi");
+L.marker([27.7504, -107.6351]).addTo(map).bindPopup("Creel");
+L.marker([28.1901, -105.4701]).addTo(map).bindPopup("Delicias");
+L.marker([27.9663, -111.0288]).addTo(map).bindPopup("San Carlos");
+L.marker([28.6353, -106.0889]).addTo(map).bindPopup("Chihuahua");
+L.marker([31.7333, -106.4833]).addTo(map).bindPopup("Ciudad Juárez");
+L.marker([31.8661, -116.5997]).addTo(map).bindPopup("Ensenada");
+L.marker([32.3604, -117.0464]).addTo(map).bindPopup("Rosarito");
+L.marker([32.5671, -116.6250]).addTo(map).bindPopup("Tecate");
+L.marker([32.5028, -117.0037]).addTo(map).bindPopup("Tijuana");
+L.marker([32.6278, -115.4545]).addTo(map).bindPopup("Mexicali");
+L.marker([20.9153, -100.7439]).addTo(map).bindPopup("San Miguel de Allende");
+L.marker([20.7393, -99.9404]).addTo(map).bindPopup("Bernal");
+L.marker([19.5193, -101.6098]).addTo(map).bindPopup("Pátzcuaro");
+L.marker([19.8465, -102.1186]).addTo(map).bindPopup("Chilchota");
+
+<!--Monaco-->
+L.marker([43.7398, 7.4273]).addTo(map).bindPopup("Monte Carlo");
+
+<!--Netherlands-->
+L.marker([51.4408, 5.4778]).addTo(map).bindPopup("Eindhoven");
+L.marker([51.5866, 4.7760]).addTo(map).bindPopup("Breda");
+L.marker([51.9225, 4.4792]).addTo(map).bindPopup("Rotterdam");
+L.marker([52.3740, 4.8897]).addTo(map).bindPopup("Amsterdam");
+L.marker([52.0767, 4.2986]).addTo(map).bindPopup("The Hague");
+L.marker([51.4700, 5.5529]).addTo(map).bindPopup("Nuenen");
+L.marker([50.8483, 5.6889]).addTo(map).bindPopup("Maastricht");
+L.marker([52.0067, 4.3556]).addTo(map).bindPopup("Delft");
+L.marker([52.0908, 5.1222]).addTo(map).bindPopup("Utrecht");
+L.marker([51.8858, 4.6319]).addTo(map).bindPopup("Kinderdijk");
+L.marker([51.6992, 5.3042]).addTo(map).bindPopup("Den Bosch");
+L.marker([51.3700, 6.1681]).addTo(map).bindPopup("Venlo");
+L.marker([51.2917, 6.0542]).addTo(map).bindPopup("Kessel");
+L.marker([51.3508, 5.4599]).addTo(map).bindPopup("Valkenswaard");
+L.marker([52.1583, 4.4931]).addTo(map).bindPopup("Leiden");
+
+<!--Slovakia-->
+L.marker([48.1482, 17.1067]).addTo(map).bindPopup("Bratislava");
+
+<!--Slovenia-->
+L.marker([46.0511, 14.5051]).addTo(map).bindPopup("Ljubljana");
+
+<!--Spain-->
+L.marker([41.3888, 2.1590]).addTo(map).bindPopup("Barcelona");
+L.marker([39.4697, -0.3774]).addTo(map).bindPopup("Valencia");
+L.marker([40.4165, -3.7026]).addTo(map).bindPopup("Madrid");
+
+<!--Switzerland-->
+L.marker([47.3667, 8.5500]).addTo(map).bindPopup("Zurich");
+L.marker([47.0505, 8.3064]).addTo(map).bindPopup("Lucerne");
+
+<!--USA-->
+L.marker([32.7153, -117.1573]).addTo(map).bindPopup("San Diego");
+L.marker([34.5958, -120.1376]).addTo(map).bindPopup("Solvang");
+L.marker([37.7749, -122.4194]).addTo(map).bindPopup("San Francisco");
+L.marker([36.1750, -115.1372]).addTo(map).bindPopup("Las Vegas");
+L.marker([36.6002, -121.8947]).addTo(map).bindPopup("Monterey");
+L.marker([34.0522, -118.2437]).addTo(map).bindPopup("Los Angeles");
+L.marker([37.8044, -122.2708]).addTo(map).bindPopup("Oakland");
+L.marker([37.7799, -121.9781]).addTo(map).bindPopup("San Ramon");
+
+<!--Vatican-->
+L.marker([41.9023, 12.4533]).addTo(map).bindPopup("Vatican City");
+
+</script>
+
 </div></div>
 {% endblock %}
