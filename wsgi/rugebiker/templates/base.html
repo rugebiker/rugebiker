@@ -1,16 +1,20 @@
 {% extends "top.html" %}
 {% load staticfiles %}
 {% block body %}
-<div id="content">
-    <h1><b>biker :: {% block title2 %}{% endblock %}</b></h1>
-    <div id="menu">
-    {% include "navigation.html" %}
+<div class="top">
+    <h2>biker :: {% block title2 %}{% endblock %}</h2>
+</div>
+<div id="menu">
+    <div class="subscribe">
+    <p>{% include "navigation.html" %}</p>
     </div>
+</div>
     {% block content %}
-    {% endblock %}
+{% endblock %}
     <br />
-    <div id="footer"><p>
+    <br />
+    <br />
+    <div class="footer"><p>
     {% include "navigation.html" %}
     </p></div>
-</div>
 {% endblock %}

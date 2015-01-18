@@ -3,6 +3,8 @@
 {% block title2 %}{% block title %}log{% endblock %}{% endblock %}
 
 {% block content %}
+<div class="archive">
+<p>    
     <br />
     {% if posts %}
         {% for post in posts %}
@@ -13,4 +15,6 @@
     {% else %}
         No hay nada
     {% endif %}
+</p>
+</div>
 {% endblock %}
