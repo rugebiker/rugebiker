@@ -9,7 +9,11 @@
         <div class="post"><p>{{ post.body|safe }}</p></div>
         <div class="tags">Categories: 
             {% for tag in post.tags.all %}
-                <a href="/blog/tag/{{tag}}">{{tag}}</a>
+                {% ifequal lang 'es' %}
+                    <a href="/blog/tag/{{tag}}/es">{{tag}}</a>
+                {% else %}
+                    <a href="/blog/tag/{{tag}}">{{tag}}</a>
+                {% endifequal %}
                 {% if not forloop.last %}, {% endif %}
             {% endfor %}
         </div>

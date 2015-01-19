@@ -36,8 +36,8 @@ def log(request, lang):
     return render_to_response("log.html", dict(posts=posts, lang=lang, user=request.user))
 
 
-def tag(request, tag):
-    posts = Post.objects.filter(tags__name=tag).order_by("-created")
+def tag(request, tag, lang):
+    posts = Post.objects.filter(tags__name=tag, lang=lang).order_by("-created")
     paginator = Paginator(posts, 5)
 
     try:
@@ -50,4 +50,4 @@ def tag(request, tag):
     except (InvalidPage, EmptyPage):
         posts = paginator.page(paginator.num_pages)
 
-    return render_to_response("tag.html", dict(posts=posts, tag=tag, lang='en', user=request.user))
+    return render_to_response("tag.html", dict(posts=posts, tag=tag, lang=lang, user=request.user))
