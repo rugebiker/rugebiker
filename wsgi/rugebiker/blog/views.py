@@ -9,7 +9,7 @@ from django.template import RequestContext
 def main(request, lang):
     """Main listing."""
     posts = Post.objects.filter(lang=lang).order_by("-created")
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 5)
 
     try:
         page = int(request.GET.get("page", '1'))
@@ -38,7 +38,7 @@ def log(request, lang):
 
 def tag(request, tag):
     posts = Post.objects.filter(tags__name=tag).order_by("-created")
-    paginator = Paginator(posts, 10)
+    paginator = Paginator(posts, 5)
 
     try:
         page = int(request.GET.get("page", '1'))

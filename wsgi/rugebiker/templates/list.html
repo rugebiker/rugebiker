@@ -13,18 +13,30 @@
 
     <!-- Next/Prev page links  -->
     {% if posts.object_list and posts.paginator.num_pages > 1 %}
-        <div class="pagination" style="margin-top: 20px; margin-left: 10px; ">
-            <span class="step-links">
-                {% if posts.has_previous %}
-                    <a href= "?page={{ posts.previous_page_number }}">newer &lt;&lt; </a>
-                {% endif %}
-                <span class="current">
-                    &nbsp;Page {{ posts.number }} of {{ posts.paginator.num_pages }}
-                </span>
-                {% if posts.has_next %}
-                    <a href="?page={{ posts.next_page_number }}"> &gt;&gt; older</a>
-                {% endif %}
-            </span>
-        </div><br />
+        <div class="all_posts">
+            <br />
+            {% if posts.has_previous %}
+                <a href= "?page={{ posts.previous_page_number }}">
+                {% ifequal lang 'es' %}
+                Entradas más recientes
+                {% else %}
+                Newer posts
+                {% endifequal %}
+                </a>
+            {% endif %}
+                <!-- &nbsp;Page {{ posts.number }} of {{ posts.paginator.num_pages }} -->
+            {% if posts.has_previous and posts.has_next %}
+             :: 
+            {% endif %}
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">
+                {% ifequal lang 'es' %}
+                Entradas más antiguas
+                {% else %}
+                Older posts
+                {% endifequal %}
+                </a>
+            {% endif %}
+        </div>
     {% endif %}
 {% endblock %}
