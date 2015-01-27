@@ -7,7 +7,7 @@
         {% if post.tags.all %}
             <div class="title"><h2><a href="/blog/{{post.post_url}}/">{{ post.title }}</a></h2></div>
             <div class="post"><h6>{{ post.created|date:"Y-m-d" }}</h6></div>
-            <div class="post"><p>{{ post.body|safe }}</p></div>
+            <div class="post">{{ post.body|safe }}</div>
         {% endif %}
     {% endfor %}
 
