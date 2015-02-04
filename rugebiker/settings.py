@@ -2,62 +2,31 @@
 # Django settings for openshift project.
 import imp
 import os
+import server
 
-# a setting to determine whether we are running on OpenShift
-ON_OPENSHIFT = False
-if os.environ.has_key('OPENSHIFT_REPO_DIR'):
-    ON_OPENSHIFT = True
-
-PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
+# PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.dirname(__file__))
 
 ADMINS = (
     #('Ruben Guerra Marin', 'rguerra.marin@gmail.com'),
 )
 MANAGERS = ADMINS
 
-if ON_OPENSHIFT:
-    # os.environ['OPENSHIFT_MYSQL_DB_*'] variables can be used with databases created
-    # with rhc cartridge add (see /README in this git repo)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': os.environ['OPENSHIFT_APP_NAME'],
-            'USER': os.environ['OPENSHIFT_MYSQL_DB_USERNAME'],
-            'PASSWORD': os.environ['OPENSHIFT_MYSQL_DB_PASSWORD'],
-            'HOST': os.environ['OPENSHIFT_MYSQL_DB_HOST'],
-            'PORT': os.environ['OPENSHIFT_MYSQL_DB_PORT']
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': server.SERVER_NAME,
+        'USER': server.SERVER_USER,
+        'PASSWORD': server.SERVER_PASSWORD,
+        'HOST': server.SERVER_HOST,
+        'PORT': server.SERVER_PORT,
     }
-    DEBUG = False
-    MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
-    STATIC_ROOT = os.path.join(PROJECT_DIR, '..', 'static')
-    STATICFILES_DIRS = ()
+}
 
-else:
-    import server
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': server.SERVER_NAME,
-            'USER': server.SERVER_USER,
-            'PASSWORD': server.SERVER_PASSWORD,
-            'HOST': server.SERVER_HOST,
-            'PORT': server.SERVER_PORT,
-        }
-    }
-
-    DEBUG = True
-    MEDIA_ROOT = ''
-    STATIC_ROOT = ''
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_DIR, '..', 'static'),
-    )
-
+DEBUG = server.SERVER_TEST
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
-    '.rugebiker-rugebiker.rhcloud.com',
-    '.rugebiker-rugebiker.rhcloud.com.',
     '.rugebiker.com',
     '.rugebiker.com.',
     '.127.0.0.1',
@@ -91,18 +60,18 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-#MEDIA_ROOT = os.environ.get('OPENSHIFT_DATA_DIR', '')
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-#STATIC_ROOT = os.path.join(PROJECT_DIR, '..', 'static')
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -118,8 +87,17 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-#    os.path.join(PROJECT_DIR, '..', 'static'),
+#    os.path.join(PROJECT_DIR, 'static'),
 #)
+
+# Make a dictionary of default keys
+default_keys = server.SERVER_KEYS 
+
+# Replace default keys with dynamic values if we are in OpenShift
+use_keys = default_keys
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = use_keys['SECRET_KEY']
 
 # List of finder classes that know how to find static files in
 # various locations.
@@ -128,19 +106,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     #'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make a dictionary of default keys
-default_keys = {'SECRET_KEY': 'vm4rl5*ymb@2&d_(gc$gb-^twq9w(u69hi--%$5xrh!xk(t%hw'}
-
-# Replace default keys with dynamic values if we are in OpenShift
-use_keys = default_keys
-if ON_OPENSHIFT:
-    imp.find_module('openshiftlibs')
-    import openshiftlibs
-    use_keys = openshiftlibs.openshift_secure(default_keys)
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = use_keys['SECRET_KEY']
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -157,7 +122,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'urls'
+ROOT_URLCONF = 'rugebiker.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -188,7 +153,7 @@ AUTHENTICATION_BACKENDS = (
     'django_browserid.auth.BrowserIDBackend',
 )
 
-BROWSERID_AUDIENCES = ['http://www.rugebiker.com/', 'http://rugebiker.com/', 'http://rugebiker-rugebiker.rhcloud.com/', 'https://rugebiker-rugebiker.rhcloud.com/', 'http://localhost:8000', 'http://127.0.0.1:8000']
+BROWSERID_AUDIENCES = ['http://www.rugebiker.com/', 'http://rugebiker.com/', 'http://localhost:8000', 'http://127.0.0.1:8000']
 BROWSERID_CREATE_USER = False
 
 SOUTH_MIGRATION_MODULES = {
