@@ -143,7 +143,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'taggit',
     'blog',
-    'south',
+    # 'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
@@ -155,6 +155,8 @@ AUTHENTICATION_BACKENDS = (
 
 BROWSERID_AUDIENCES = ['http://www.rugebiker.com/', 'http://rugebiker.com/', 'http://localhost:8000', 'http://127.0.0.1:8000']
 BROWSERID_CREATE_USER = False
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 SOUTH_MIGRATION_MODULES = {
     'taggit': 'taggit.south_migrations',
